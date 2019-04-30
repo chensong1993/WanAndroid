@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/item_main_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+
+        <TextView
+            android:id="@+id/tv_news_detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_weight="3"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingRight="100dp"
+            android:textColor="@android:color/black"
+            android:textSize="15dp"
+            tools:text="证监会反馈：正积极研究三类股东适格性问题" />
+
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="12dp"
+            android:paddingTop="6dp"
+            android:text="作者:"
+            android:textColor="@color/black"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tv_news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/tv_author"
+            android:paddingBottom="12dp"
+            android:paddingTop="6dp"
+            android:textColor="@color/blue"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tv_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="12dp"
+            android:paddingTop="6dp"
+            android:text="取消收藏"
+            android:textColor="@color/black"
+            android:textSize="13dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -8,8 +8,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.just.agentweb.AgentWeb;
+import com.shanghai.templateapp.app.App;
 import com.shanghai.templateapp.base.BaseActivity;
-import com.shanghai.templateapp.presenters.main.MainPresenter;
+import com.shanghai.templateapp.base.SimpleActivity;
 import com.shanghai.templateapp.ui.adapter.main.MainViewPagerAdapter;
 import com.shanghai.templateapp.widget.navigation.BottomNavigation;
 import com.shanghai.templateapp.widget.navigation.BottomNavigationAdapter;
@@ -17,7 +18,7 @@ import com.shanghai.templateapp.widget.navigation.BottomNavigationViewPager;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends SimpleActivity {
 
     @BindView(R.id.view_pager)
     BottomNavigationViewPager viewPager;
@@ -28,14 +29,22 @@ public class MainActivity extends BaseActivity {
     long mBackTime;
 
     private MainViewPagerAdapter adapter;
-    @Override
-    protected int getLayout() {
-       return R.layout.activity_main;
-    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
+//    @Override
+//    protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//
+//    }
+
+    @Override
+    protected void initEventAndData() {
+        setSwipeBackEnable(false);
         // 隐藏导航栏Items
         BottomNavigationAdapter navigationAdapter = new BottomNavigationAdapter(this, R.menu.menu_bottom_navigation);
         navigationAdapter.setupWithBottomNavigation(bottomNavigation);
@@ -59,10 +68,6 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void initEventAndData() {
-
-    }
-    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if (System.currentTimeMillis() - mBackTime > 2000) {
@@ -75,8 +80,10 @@ public class MainActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
     @Override
-    protected void initInject() {
-      //  getActivityComponent().inject(this);
+    protected void onDestroy() {
+        super.onDestroy();
+        App.refWatcher.watch(this);
     }
 }

@@ -1,7 +1,15 @@
 package com.shanghai.templateapp.injections.modules;
 
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.shanghai.templateapp.BuildConfig;
+import com.shanghai.templateapp.app.App;
+import com.shanghai.templateapp.app.Constants;
+import com.shanghai.templateapp.injections.qualifier.DecodeURL;
 import com.shanghai.templateapp.injections.qualifier.NewsURL;
+import com.shanghai.templateapp.models.http.cookies.CookiesManager;
+import com.shanghai.templateapp.models.services.DecodeService;
 import com.shanghai.templateapp.models.services.NewsService;
 import com.shanghai.templateapp.util.SystemUtil;
 
@@ -44,10 +52,16 @@ public class HttpModule {
     @Singleton
     @Provides
     @NewsURL
-    Retrofit provideCommonRetrofit(Retrofit.Builder builder, OkHttpClient client) {
-        return createRetrofit(builder, client, "http://api.chinaipo.com/api/");
+    Retrofit provideNewsRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        return createRetrofit(builder, client, Constants.MAIN_URL);
     }
 
+    @Singleton
+    @Provides
+    @DecodeURL
+    Retrofit provideDecodeRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        return createRetrofit(builder, client, "http://192.168.1.31/zhumin/action/");
+    }
 
     @Singleton
     @Provides
@@ -55,10 +69,10 @@ public class HttpModule {
         if (BuildConfig.LOG_DEBUG) {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             //NONE不打印log  BODY 请求+相应行+Http头+Http请求体
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             builder.addInterceptor(loggingInterceptor);
         }
-        File cacheFile = new File("缓存地址");
+        File cacheFile = new File(Constants.PATH_CACHE);
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
         Interceptor cacheInterceptor = new Interceptor() {
             @Override
@@ -110,6 +124,8 @@ public class HttpModule {
         builder.writeTimeout(40, TimeUnit.SECONDS);
         //错误重连
         builder.retryOnConnectionFailure(true);
+        //cookice认证
+        builder.cookieJar(new PersistentCookieJar(new SetCookieCache(),new SharedPrefsCookiePersistor(App.getInstance())));
         return builder.build();
     }
 
@@ -119,7 +135,11 @@ public class HttpModule {
         return retrofit.create(NewsService.class);
     }
 
-
+    @Singleton
+    @Provides
+    DecodeService provideDecodeService(@DecodeURL Retrofit retrofit){
+        return retrofit.create(DecodeService.class);
+    }
     private Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
         return builder
                 .baseUrl(url)

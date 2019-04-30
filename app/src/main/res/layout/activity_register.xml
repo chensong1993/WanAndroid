@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="80dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:hint="输入手机号"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:inputType="phone"
+            android:paddingLeft="@dimen/space"
+            android:textColorHint="@color/hui2" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="20dp"
+            android:hint="输入密码"
+            android:inputType="textPassword"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/space"
+            android:textColorHint="@color/hui2" />
+
+        <EditText
+            android:id="@+id/et_repassword"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="20dp"
+            android:hint="确认密码"
+            android:inputType="textPassword"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/space"
+            android:textColorHint="@color/hui2" />
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="注册" />
+    </LinearLayout>
+
+
+</RelativeLayout>

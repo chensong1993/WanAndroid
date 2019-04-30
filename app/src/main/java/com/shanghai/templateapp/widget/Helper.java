@@ -1,4 +1,4 @@
-package com.shanghai.templateapp.widget.navigation;
+package com.shanghai.templateapp.widget;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;

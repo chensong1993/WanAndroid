@@ -7,40 +7,35 @@ import java.io.Serializable;
  * @date 2019/2/18 11:49
  */
 public class ApiResponse<T> implements Serializable {
-    private int count;
-    private String next;
-    private String prev;
-    private T results;
 
-    public int getCount() {
-        return count;
+    private T data;
+    private int errorCode;
+
+    private String errorMsg;
+
+    public T getData() {
+        return data;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setData(T data) {
+        this.data = data;
     }
 
-    public String getNext() {
-        return next;
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
     }
 
-    public void setNext(String next) {
-        this.next = next;
+    public int getErrorCode() {
+        return this.errorCode;
     }
 
-    public String getPrev() {
-        return prev;
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 
-    public void setPrev(String prev) {
-        this.prev = prev;
+    public String getErrorMsg() {
+        return this.errorMsg;
     }
 
-    public T getResults() {
-        return results;
-    }
 
-    public void setResults(T results) {
-        this.results = results;
-    }
 }

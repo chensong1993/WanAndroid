@@ -3,6 +3,8 @@ package com.shanghai.templateapp.widget.navigation.notice;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 
+import com.shanghai.templateapp.widget.navigation.notice.Notice;
+
 /**
  * @author repitch
  */

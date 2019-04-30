@@ -3,8 +3,10 @@ package com.shanghai.templateapp.base;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
+import com.gyf.immersionbar.ImmersionBar;
+import com.shanghai.templateapp.R;
+import com.shanghai.templateapp.app.App;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -23,15 +25,19 @@ public abstract class SimpleActivity extends SwipeBackActivity {
         mUnBinder = ButterKnife.bind(this);
         mContext = this;
         onViewCreated();
+        initEventAndData();
 
+        ImmersionBar.with(this)
+                .fitsSystemWindows(true)
+                .statusBarColor(R.color.black)
+                .init();
     }
-
 
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        //  initEventAndData();
+
     }
 
     protected void onViewCreated() {
@@ -42,9 +48,9 @@ public abstract class SimpleActivity extends SwipeBackActivity {
     protected void onDestroy() {
         super.onDestroy();
         mUnBinder.unbind();
+        App.refWatcher.watch(this);
         //  unregisterReceiver(receiver);
     }
-
 
 
     protected abstract int getLayout();

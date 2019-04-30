@@ -6,7 +6,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import com.shanghai.templateapp.ui.fragment.HomeFragment;
-import com.shanghai.templateapp.ui.fragment.TwoFragment;
+import com.shanghai.templateapp.ui.fragment.MeFragment;
+import com.shanghai.templateapp.ui.fragment.ProjectFragment;
+import com.shanghai.templateapp.ui.fragment.StarFragment;
+import com.shanghai.templateapp.ui.fragment.home.ArticleFragment;
 
 import java.util.ArrayList;
 
@@ -21,12 +24,10 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
     public MainViewPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-
         fragments.clear();
         fragments.add(new HomeFragment());
-        fragments.add(new TwoFragment());
-        fragments.add(new HomeFragment());
-        fragments.add(new TwoFragment());
+        fragments.add(new ProjectFragment());
+        fragments.add(new MeFragment());
     }
 
     @Override

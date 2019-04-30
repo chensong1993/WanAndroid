@@ -1,5 +1,7 @@
 package com.shanghai.templateapp.util;
 
+import android.util.Log;
+
 import com.shanghai.templateapp.models.entity.ApiResponse;
 
 import java.util.List;
@@ -72,10 +74,11 @@ public class RxUtils {
                 return httpResponseFlowable.flatMap(new Function<ApiResponse<T>, Flowable<T>>() {
                     @Override
                     public Flowable<T> apply(ApiResponse<T> tHttpResponse) {
-                        if (tHttpResponse.getCount() > 0) {
-                            return createData(tHttpResponse.getResults());
+                        if (tHttpResponse.getErrorCode()== 0) {
+                            Log.i("apply", "apply: ");
+                            return createData(tHttpResponse.getData());
                         } else {
-                            return Flowable.error(new Exception("服务器返回error : " + tHttpResponse.getCount()));
+                            return Flowable.error(new Exception("服务器返回error : " + tHttpResponse.getErrorCode()));
                         }
                     }
                 });
@@ -85,43 +88,45 @@ public class RxUtils {
 
 
 
-    public static <T> ObservableTransformer<ApiResponse<T>, T> handleResultsObserable() {   //compose判断结果
-        return new ObservableTransformer<ApiResponse<T>, T>() {
-            @Override
-            public Observable<T> apply(Observable<ApiResponse<T>> httpResponseFlowable) {
-                return httpResponseFlowable.flatMap(new Function<ApiResponse<T>, Observable<T>>() {
-                    @Override
-                    public Observable<T> apply(ApiResponse<T> tHttpResponse) {
-                        if (tHttpResponse.getCount() > 0) {
-                            return createObservable(tHttpResponse.getResults());
-                        } else {
-                            return Observable.error(new Exception("服务器返回error : " + tHttpResponse.getCount()));
-                        }
-                    }
-                });
-            }
-        };
-    }
 
 
-    public static <T> SingleTransformer<ApiResponse<List<T>>, T> getFirst() {   //compose判断结果
-        return new SingleTransformer<ApiResponse<List<T>>, T>() {
-            @Override
-            public Single<T> apply(Single<ApiResponse<List<T>>> httpResponseFlowable) {
-                return httpResponseFlowable.flatMap(new Function<ApiResponse<List<T>>, Single<T>>() {
-                    @Override
-                    public Single<T> apply(ApiResponse<List<T>> tHttpResponse) {
-                        if (tHttpResponse.getCount() > 0) {
-                            return null;
-//                            return Single.fromFuture(.getResults().get(0));
-                        } else {
-                            return Single.error(new Exception("服务器返回error : " + tHttpResponse.getCount()));
-                        }
-                    }
-                });
-            }
-        };
-    }
+//    public static <T> ObservableTransformer<ApiResponse<T>, T> handleResultsObserable() {   //compose判断结果
+//        return new ObservableTransformer<ApiResponse<T>, T>() {
+//            @Override
+//            public Observable<T> apply(Observable<ApiResponse<T>> httpResponseFlowable) {
+//                return httpResponseFlowable.flatMap(new Function<ApiResponse<T>, Observable<T>>() {
+//                    @Override
+//                    public Observable<T> apply(ApiResponse<T> tHttpResponse) {
+//                        if (tHttpResponse.getCurPage() > 0) {
+//                            return createObservable(tHttpResponse.getResults());
+//                        } else {
+//                            return Observable.error(new Exception("服务器返回error : " + tHttpResponse.getCurPage()));
+//                        }
+//                    }
+//                });
+//            }
+//        };
+//    }
+
+
+//    public static <T> SingleTransformer<ApiResponse<List<T>>, T> getFirst() {   //compose判断结果
+//        return new SingleTransformer<ApiResponse<List<T>>, T>() {
+//            @Override
+//            public Single<T> apply(Single<ApiResponse<List<T>>> httpResponseFlowable) {
+//                return httpResponseFlowable.flatMap(new Function<ApiResponse<List<T>>, Single<T>>() {
+//                    @Override
+//                    public Single<T> apply(ApiResponse<List<T>> tHttpResponse) {
+//                        if (tHttpResponse.getCurPage() > 0) {
+//                            return null;
+////                            return Single.fromFuture(.getResults().get(0));
+//                        } else {
+//                            return Single.error(new Exception("服务器返回error : " + tHttpResponse.getCurPage()));
+//                        }
+//                    }
+//                });
+//            }
+//        };
+//    }
 
     public static <T> SingleTransformer<T, T> getList() {   //compose判断结果
         return new SingleTransformer<T, T>() {
@@ -136,24 +141,7 @@ public class RxUtils {
             }
         };
     }
-//
-//    public static <T> FlowableTransformer<ApiResponse<T>, T> fetchResults() {   //compose判断结果
-//        return new FlowableTransformer<ApiResponse<T>, T>() {
-//            @Override
-//            public Flowable<T> apply(Flowable<ApiResponse<T>> httpResponseFlowable) {
-//                return httpResponseFlowable.flatMap(new Function<ApiResponse<T>, Flowable<T>>() {
-//                    @Override
-//                    public Flowable<T> apply(ApiResponse<T> tHttpResponse) {
-//                        if(tHttpResponse.getCount() > 0) {
-//                            return createData(tHttpResponse.getResults());
-//                        } else {
-//                            return Flowable.error(new Exception("服务器返回error"));
-//                        }
-//                    }
-//                });
-//            }
-//        };
-//    }
+
 
 
     public static <T> Flowable<T> createData(final T t) {

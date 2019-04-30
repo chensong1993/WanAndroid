@@ -49,7 +49,7 @@
 -keepattributes *Annotation*
 -keepattributes *JavascriptInterface*
 
-
+-keep class com.hjq.toast.** {*;}
 -dontwarn com.umeng.**
 -dontwarn com.taobao.**
 -dontwarn anet.channel.**
@@ -85,3 +85,7 @@
 -dontwarn com.just.agentweb.**
 
 -keepclassmembers class com.just.agentweb.sample.common.AndroidInterface{ *; }
+
+#沉浸式
+ -keep class com.gyf.immersionbar.* {*;}
+ -dontwarn com.gyf.immersionbar.**

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/rl_load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/tv_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="12dp"
+            android:text="登录"
+            android:textColor="@color/hui2"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/tv_load"
+            android:background="#999" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_load"
+            android:background="#999" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_dengluzhuce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_load">
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="80dp"
+            android:hint="手机号"
+            android:maxLength="11"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/hui2" />
+
+
+        <EditText
+            android:id="@+id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_below="@id/et_phone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="12dp"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/hui2" />
+
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_below="@id/et_pwd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/black"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="17dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_findpwdandregister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_dengluzhuce"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:id="@+id/tv_forgetpwd"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="center_vertical"
+            android:text="忘记密码"
+            android:textColor="@color/hui1"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:text="注册账号"
+            android:textColor="@color/hui1"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/tv_zd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/transparent_background" />
+
+    <TextView
+        android:id="@+id/tv_auto_jump"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@color/black"
+        android:gravity="center"
+        android:text="自动跳转,请稍等..."
+        android:textColor="@color/white"
+        android:visibility="gone" />
+</RelativeLayout>

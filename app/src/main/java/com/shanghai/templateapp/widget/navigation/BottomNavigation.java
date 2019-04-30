@@ -39,6 +39,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shanghai.templateapp.R;
+import com.shanghai.templateapp.widget.Helper;
 import com.shanghai.templateapp.widget.navigation.notice.Notice;
 import com.shanghai.templateapp.widget.navigation.notice.NoticeHelper;
 
